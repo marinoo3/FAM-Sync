@@ -8,7 +8,7 @@ endpoints = Blueprint('api', __name__)
 
 
 
-@endpoints.route('/sync_clickandboat/', methods=['POST'])
+@endpoints.route('/sync_clickandboat', methods=['POST'])
 def sync_clickandboat():
 
     # collect token from body
