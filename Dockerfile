@@ -10,7 +10,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PORT=8000 \
     LANG=fr_FR.UTF-8 \
     LANGUAGE=fr_FR:fr \
-    LC_ALL=fr_FR.UTF-8
+    LC_ALL=fr_FR.UTF-8 \
+    PORT=8000
 
 WORKDIR /app
 
@@ -41,4 +42,4 @@ COPY . .
 EXPOSE 8000
 
 # 6. Start the web app (same command as in your Procfile)
-CMD ["gunicorn", "--bind", "0.0.0.0:${PORT}", "app:app"]
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
