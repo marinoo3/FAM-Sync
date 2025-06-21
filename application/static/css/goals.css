@@ -1,0 +1,29 @@
+section.goals-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.goals-container ul > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-light);
+    border: solid 1px var(--border);
+    border-radius: 1vh;
+    margin-bottom: 1vh;
+    padding: 10px;
+}
+
+.goals-container ul > li > div {
+    flex: 20%;
+}
+
+.goals-container ul h2 {
+    text-align: left;
+    font-size: 3vh;
+    margin: 2vh 1vh 1vh;
+}
+
+.goals-container ul > li h3 {
+    margin-bottom: .4vh;
+}

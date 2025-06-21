@@ -1,0 +1,22 @@
+.videos-container {
+    padding: 0px 20px;
+}
+
+.videos-container .rows {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.videos-container .column {
+    flex: 33%;
+    max-width: calc(33% - 10px);
+}
+
+.videos-container .column > li{
+    margin-bottom: 20px;
+}
+
+.videos-container .column > li iframe{
+    width: 100%;;
+}

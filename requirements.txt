@@ -1,0 +1,7 @@
+Flask==3.0.3
+gunicorn==21.2.0
+requests==2.32.3
+beautifulsoup4==4.13.3
+DateTime==5.5
+pandas==2.2.3
+zoneinfo

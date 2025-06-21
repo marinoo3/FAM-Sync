@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/goals.css') }}">
+    <link rel="icon" type="" href="{{ url_for('static', filename='images/favicon.jpg') }}">
+    <title>CR7 to 1000 - Goals</title>
+</head>
+
+<body>
+
+    <div class="popup" id="loading-popup">
+        <img src="{{ url_for('static', filename='images/loading.svg') }}" alt="">
+        <p>Chargement des données</p>
+    </div>
+
+    <nav class="main-menu">
+        <div>
+            <img class="logo" src="{{ url_for('static', filename='images/banner.jpg') }}" alt="CR7 to 1000 banner">
+        </div>
+        <div class="burger">
+            <img src="{{ url_for('static', filename='images/burger.svg') }}" alt="">
+        </div>  
+        <div class="link-container">
+            <ul>
+                <li>
+                    <a href="dashboard">
+                        <img src="{{ url_for('static', filename='images/dashboard.svg') }}" alt="Dashboard icon">
+                        <p>Tableau de bord</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="goals">
+                        <img src="{{ url_for('static', filename='images/goals.svg') }}" alt="Goals icon">
+                        <p>Buts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports">
+                        <img src="{{ url_for('static', filename='images/reports.svg') }}" alt="Reports icon">
+                        <p>Rapports</p>
+                    </a>
+                </li>
+                <li >
+                    <a href="videos">
+                        <img src="{{ url_for('static', filename='images/videos.svg') }}" alt="Reports icon">
+                        <p>Videos</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="more-button">
+                <img src="{{ url_for('static', filename='images/down-arrow.svg') }}" alt="">
+                <div>
+                    <p>Plus</p>
+                    <ul class="dropdown">
+                        <li><a href="bio">Biographie</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="header">
+        <h1>Buts</h1>
+    </section>
+
+    <section class="goals-container">
+        <ul>
+            
+        </ul>
+    </section>
+
+    <template id="goal-template">
+        <li>
+            <div>
+                <h3>DATE</h3>
+                <p class="date"></p>
+            </div>
+            <div>
+                <h3>COMPETITION</h3>
+                <p class="competition"></p>
+            </div>
+            <div>
+                <h3>POSITION</h3>
+                <p class="position"></p>
+            </div>
+            <div>
+                <h3>MINUTE</h3>
+                <p class="minute"></p>
+            </div>
+            <div>
+                <h3>TYPE OF GOAL</h3>
+                <p class="type-of-goal"></p>
+            </div>
+        </li>
+    </template>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/goals.js') }}"></script>
+
+</body>
+</html>

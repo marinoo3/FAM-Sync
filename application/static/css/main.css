@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,200&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root{
+    --bg: #0c0e13;
+    --bg-light: #14181e;
+    --border: #2c2f34;
+    --font-second: #666666;
+    --light-red: #E8545F;
+    --dark-red: #853D43;
+}
+
+
+
+/* GLOBAL */
+
+html {
+    height: 100%;
+    display: flex;
+}
+
+body {
+    background-color: var(--bg);
+    margin: auto;
+    width: 100%;
+}
+
+h1, h2 {
+    font-family: 'Archivo Expanded', sans-serif;
+    font-weight: 200;
+    text-align: center;
+}
+
+h3, h5, p {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 400;
+}
+
+li {
+    font-size: 1.5vh;
+}
+
+a, p {
+    font-size: 1.8vh;
+}
+
+h1 {
+    font-size: 10vh;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 4vh;
+}
+
+h3 {
+    font-size: 1.8vh;
+    color: var(--font-second);
+}
+
+h4 {
+    font-size: 1.5vh;
+    color: white;
+    text-align: center;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+
+/* REUSABLE ELEMENTS */
+
+section.block-section {
+    background-color: var(--bg-light);
+    border: solid var(--border) 2px;
+    margin: 0px 60px;
+    padding: 2vh;
+    border-radius: 1.5vh;
+    margin-bottom: 3vh
+}
+
+.block {
+    background-color: var(--bg);
+    border-radius: 1vh;
+    padding: 2vh 1vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.masked {
+    visibility: hidden;
+}
+
+.header {
+    margin: 15vh 0px 4vh;
+}
+
+.header h1 {
+    font-size: 5vh;
+    font-weight: 300;
+}
+
+
+/* MENU */
+
+nav.main-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.4vh 4vh;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 8vh);
+    z-index: 10;
+    background-color: var(--bg-light);
+    border-bottom: solid 2px var(--border);
+    align-items: center;
+}
+
+nav.main-menu img {
+    width: 2.3vh;
+}
+
+nav.main-menu > div {
+    flex: 1;
+}
+
+nav.main-menu .link-container {
+    display: none;
+}
+
+nav.main-menu .burger {
+    flex: inherit;
+}
+
+nav.main-menu .logo {
+    width: 12vh;
+    max-width: 12vh;
+    mix-blend-mode: screen;
+}
+
+nav.main-menu link-container {
+    display: flex;
+}
+
+nav.main-menu ul {
+    
+}
+
+nav.main-menu ul > li a {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    transition: background-color .125s ease;
+    padding: 1vh;
+    border-radius: 10px;
+}
+nav.main-menu ul > li a:hover {
+    background-color: var(--bg);
+    cursor: pointer;
+}
+
+nav.main-menu .more-button {
+    
+}
+
+nav.main-menu .more-button .dropdown {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    padding: 8px 8px 0px 8px;
+    left: -2vh;
+    right: 1vh;
+    display: none;
+    background: var(--bg);
+}
+
+nav.main-menu .more-button:hover .dropdown, nav.main-menu .dropdown:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    min-width: 250px;
+    text-align: left;
+    border-top: solid 10px var(--bg-light);
+}
+
+nav.main-menu .more-button .dropdown li {
+    clear: both;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    border-style: none;
+}
+
+nav.main-menu .more-button .dropdown li a:hover {
+    padding-left: 20px;
+    /* color: white; */
+    transition: all 0.3s ease;
+}
+
+/* POPUP */
+
+.popup {
+    background-color: var(--bg-light);
+    border: solid var(--border) 2px;
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
+    position: fixed;
+    border-radius: 8px;
+    padding: 1vh 2vh;
+    bottom: 20px;
+    right: 20px;
+}
+
+.popup img {
+    width: 30px;
+    height: 30px;
+}
+
+
+
+
+/* RESPONSIVE */
+
+@media (min-width: 1000px) {
+
+    section.block-section {
+        max-width: 800px;
+        margin: auto;
+        margin-bottom: 3vh;
+    }
+
+    nav.main-menu .burger {
+        display: none;
+    }
+
+    nav.main-menu .link-container {
+        display: flex;
+        flex: 100;
+    }
+
+    nav.main-menu ul {
+        display: flex;
+        align-items: center;
+        gap: 4vh;
+        flex: 12;
+        justify-content: center;
+    }
+
+    nav.main-menu .more-button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1vh;
+        position: relative;
+        padding: 10px 0px;
+        width: 12vh;
+    }
+
+}
