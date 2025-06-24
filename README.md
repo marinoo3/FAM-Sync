@@ -1,3 +1,5 @@
+# ![FAM Sync Logo](logo.png)
+
 # FAM Sync
 
 FAM Sync is a private API developed to synchronize bookings from boat rental platforms to a Notion database. Built using Python and Flask, it is hosted on Koyeb to ensure seamless and efficient operations.
