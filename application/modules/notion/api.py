@@ -45,7 +45,7 @@ class NotionCalendar:
         return abs(date1 - date2) <= one_hour
 
 
-    def load_calendar(self) -> None:
+    def load_calendar(self) -> dict:
 
         today_str = datetime.now().strftime('%Y-%m-%d')
 
@@ -76,8 +76,10 @@ class NotionCalendar:
 
             self.bookings.append(Event(client, start_date, end_date, ca, source))
 
+        return response.json()
 
-    def add_event(self, event:Event) -> None:
+
+    def add_event(self, event:Event) -> dict:
 
         data = {
             'parent': {
@@ -119,6 +121,8 @@ class NotionCalendar:
         response = self.__safe_requests(pages_api_url, headers=self.headers, data=json.dumps(data))        
         response.raise_for_status() # raises response status error
         print(f'{event.client} added to calendar on {event.start_date.date()}')
+
+        return response.json()
 
 
     def match_event(self, event:Event) -> Event:

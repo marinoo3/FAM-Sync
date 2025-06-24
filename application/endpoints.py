@@ -21,7 +21,10 @@ def sync_clickandboat():
     if not token:
         abort(400, 'token missing')
 
-    current_app.calendar.load_calendar()
+    # load calendar from Notion
+    response_json = current_app.calendar.load_calendar()
+    print(response_json)
+
     bookings = current_app.parser.get_bookings(platforms=['clickandboat'], cookies={'authToken': token})
 
     new_bookings = {
@@ -31,7 +34,8 @@ def sync_clickandboat():
 
     for event in bookings:
         if not current_app.calendar.match_event(event):
-            current_app.calendar.add_event(event)
+            response = current_app.calendar.add_event(event)
+            print(response)
             new_bookings['count'] += 1
             new_bookings['names'].append(event.client)
 
