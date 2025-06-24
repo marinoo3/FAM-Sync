@@ -14,7 +14,7 @@ def create_app():
 
     # Load configuration
     with app.app_context():
-        app.secret_key = os.environ.get('CR7TO1000_SECRET_KEY')
+        app.secret_key = os.environ.get('SECRET_KEY')
         app.calendar = NotionCalendar(os.environ['NOTION_DB_ID'])
         app.parser = Parser()
 
