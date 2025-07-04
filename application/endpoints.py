@@ -14,10 +14,10 @@ def check_api_key(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
         
-        api_key = request.args.get('auth')
-
+        api_key = request.headers.get('X-API-Key')
         print(api_key)
         print(current_app.secret_key)
+        
         if api_key and api_key == current_app.secret_key:
             return f(*args, **kwargs)
         
