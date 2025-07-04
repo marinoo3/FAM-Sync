@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, request, session, abort, jsonify
+from flask import Blueprint, current_app, request, abort, jsonify
 from functools import wraps
 
 
@@ -15,6 +15,9 @@ def check_api_key(f):
     def wrapper(*args, **kwargs):
         
         api_key = request.args.get('auth')
+
+        print(api_key)
+        print(current_app.secret_key)
         if api_key and api_key == current_app.secret_key:
             return f(*args, **kwargs)
         
