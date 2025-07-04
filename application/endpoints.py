@@ -15,9 +15,8 @@ def check_api_key(f):
     def wrapper(*args, **kwargs):
         
         api_key = request.headers.get('X-API-Key')
-        print(api_key)
-        print(current_app.secret_key)
-        
+        print('headers:', request.headers)
+
         if api_key and api_key == current_app.secret_key:
             return f(*args, **kwargs)
         
