@@ -60,3 +60,10 @@ def sync_clickandboat():
             new_bookings['names'].append(event.client)
 
     return jsonify({'status': 'success', 'content': new_bookings})
+
+
+
+@endpoints.route('/check_auth', methods=['GET'])
+@check_api_key
+def check_auth():
+    return jsonify({'status': 'success'})
