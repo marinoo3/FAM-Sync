@@ -80,32 +80,22 @@ class ClickAndBoat(BaseApi):
 
         for row in table.select('.booking-row'):
 
-            row_data = {}
-
-            # skip the booking if not accepted yet
-            booking_status = row.select_one('.cell-status')
-            status = booking_status.select_one('span.status')['data-state']
-            if status.lower() != 'accepted':
-                print('status', status.lower())
-                continue
+            booking_status = row.select_one('.cell-status span.status')['data-state']
+            booking_status = booking_status.lower()
+            print(booking_status)
 
             booking_id = row.select_one('.cell-id').getText(strip=True)
             booking_id = booking_id.replace('N°', '')
-            row_data['id'] = booking_id
 
             booking_client = row.select_one('.cell-other-account').getText(strip=True)
-            row_data['client'] = booking_client
 
             booking_price = row.select_one('.cell-price').getText(strip=True)
             booking_price = booking_price.strip().replace('€', '')
-            row_data['price'] = float(booking_price)
 
             _date = row.select_one('.cell-details .date').getText()
             start_date, end_date = self.__extract_dates(_date)
-            row_data['start_date'] = start_date
-            row_data['end_date'] = end_date
 
-            if start_date.date() >= date.today():
+            if start_date.date() >= date.today() and booking_status == 'accepted':
                 # only append to the list if the booking isn't done already
                 e = Event(booking_client, start_date, end_date, booking_price, 'Click&Boat')
                 events.append(e)
