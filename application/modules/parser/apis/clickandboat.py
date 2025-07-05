@@ -83,7 +83,7 @@ class ClickAndBoat(BaseApi):
             row_data = {}
 
             # skip the booking if not accepted yet
-            booking_status = row.select_one('cell-status')
+            booking_status = row.select_one('.cell-status')
             status = booking_status.select_one('span.status')['data-state']
             if status.lower() != 'accepted':
                 continue
