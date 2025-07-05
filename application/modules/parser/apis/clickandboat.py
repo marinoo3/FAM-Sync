@@ -86,6 +86,7 @@ class ClickAndBoat(BaseApi):
             booking_status = row.select_one('.cell-status')
             status = booking_status.select_one('span.status')['data-state']
             if status.lower() != 'accepted':
+                print('status', status.lower())
                 continue
 
             booking_id = row.select_one('.cell-id').getText(strip=True)
