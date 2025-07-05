@@ -33,8 +33,13 @@ class ClickAndBoat(BaseApi):
 
     def __safe_requests(self, url, tic=0, cookies:dict = None) -> requests.Response:
 
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+            'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7'
+        }
+
         try:
-            response = requests.get(url, cookies=cookies)
+            response = requests.get(url, cookies=cookies, headers=headers)
         except ConnectionError:
             if tic < 3:
                 time.sleep(2)
@@ -43,8 +48,7 @@ class ClickAndBoat(BaseApi):
                 raise Exception(f'Connection Error: failed to requests "{url}"')
         
         if '?redirect' in response.url:
-            print(f'    Failed to request "{url}" even after generating new cookie. Request got redirected')
-            return None
+            raise Exception(f'API Error: requests got redirected: "{url}"')
 
         return response
     
@@ -82,7 +86,6 @@ class ClickAndBoat(BaseApi):
 
             booking_status = row.select_one('.cell-status span.status')['data-state']
             booking_status = booking_status.lower()
-            print(booking_status)
 
             booking_id = row.select_one('.cell-id').getText(strip=True)
             booking_id = booking_id.replace('N°', '')
