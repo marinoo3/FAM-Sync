@@ -15,8 +15,6 @@ def check_api_key(f):
     def wrapper(*args, **kwargs):
         
         api_key = request.headers.get('X-API-Key')
-        print('headers:', request.headers)
-
         if api_key and api_key == current_app.secret_key:
             return f(*args, **kwargs)
         
@@ -62,8 +60,8 @@ def sync_clickandboat():
     return jsonify({'status': 'success', 'content': new_bookings})
 
 
-
 @endpoints.route('/check_auth', methods=['GET'])
 @check_api_key
 def check_auth():
+    print('ACCESS ALLOWED')
     return jsonify({'status': 'success'})
