@@ -15,7 +15,8 @@ def create_app():
     # Load configuration
     with app.app_context():
         app.secret_key = os.environ.get('SECRET_KEY')
-        app.calendar = NotionCalendar(os.environ['NOTION_DB_ID'])
+        app.demo_secret_key = os.environ.get('DEMO_SECRET_KEY')
+        app.calendar = NotionCalendar()
         app.parser = Parser()
 
     from .endpoints import endpoints as endpoints_blueprint
