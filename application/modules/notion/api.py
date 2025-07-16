@@ -16,13 +16,12 @@ class NotionCalendar:
     bookings: list[Event] = []
 
 
-    def __init__(self, db_id:str):
+    def __init__(self):
         self.headers = {
             'Authorization': f"Bearer {os.environ['NOTION_KEY']}",
             'Content-Type': 'application/json',
             'Notion-Version': '2022-06-28'
         }
-        self.db_id = db_id
 
 
     def __safe_requests(self, url, headers: dict = None, data: dict = None, tic=0):
@@ -45,7 +44,7 @@ class NotionCalendar:
         return abs(date1 - date2) <= one_hour
 
 
-    def load_calendar(self) -> dict:
+    def load_calendar(self, db_id:str) -> dict:
 
         today_str = datetime.now().strftime('%Y-%m-%d')
 
@@ -60,10 +59,12 @@ class NotionCalendar:
             }
         }
 
-        db_api_url = self.base_url + '/databases/' + self.db_id + '/query'
+        db_api_url = self.base_url + '/databases/' + db_id + '/query'
 
         response = self.__safe_requests(db_api_url, headers=self.headers, data=json.dumps(data))
         content = response.json()
+
+        print(response.text)
 
         for event in content['results']:
 
@@ -79,11 +80,11 @@ class NotionCalendar:
         return response.json()
 
 
-    def add_event(self, event:Event) -> dict:
+    def add_event(self, db_id:str, event:Event) -> dict:
 
         data = {
             'parent': {
-                'database_id': self.db_id
+                'database_id': db_id
             },
             'properties': {
                 "Client": {
