@@ -67,6 +67,6 @@ def sync_clickandboat(db_id:str):
 
 @endpoints.route('/check_auth', methods=['GET'])
 @check_api_key
-def check_auth():
+def check_auth(_):
     print('ACCESS ALLOWED')
     return jsonify({'status': 'success'})
