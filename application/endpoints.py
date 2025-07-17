@@ -56,7 +56,10 @@ def sync_clickandboat(db_id:str):
     }
 
     for event in bookings:
-        if not current_app.calendar.match_event(event):
+        if event.boat == 'Searay':
+            print('Searay skipped from sync')
+            continue
+        elif not current_app.calendar.match_event(event):
             response = current_app.calendar.add_event(db_id, event)
             print(response)
             new_bookings['count'] += 1
