@@ -53,6 +53,16 @@ class ClickAndBoat(BaseApi):
         return response
     
 
+    def __format_boat(self, boat_title:str) -> str:
+
+        boat_title = boat_title.lower().strip()
+
+        if 'rio' in boat_title:
+            return 'Rio 450'
+        elif 'searay' in boat_title:
+            return 'Searay'
+    
+
     def __extract_dates(self, text: str) -> tuple[datetime, datetime]:
 
         locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
@@ -95,12 +105,15 @@ class ClickAndBoat(BaseApi):
             booking_price = row.select_one('.cell-price').getText(strip=True)
             booking_price = booking_price.strip().replace('€', '')
 
+            _boat = row.select_one('.cell-details a').getText()
+            booking_boat = self.__format_boat(_boat)
+
             _date = row.select_one('.cell-details .date').getText()
             start_date, end_date = self.__extract_dates(_date)
 
             if start_date.date() >= date.today() and booking_status == 'accepted':
                 # only append to the list if the booking isn't done already
-                e = Event(booking_client, start_date, end_date, booking_price, 'Click&Boat')
+                e = Event(booking_client, start_date, end_date, booking_price, booking_boat, 'Click&Boat')
                 events.append(e)
 
         return events
