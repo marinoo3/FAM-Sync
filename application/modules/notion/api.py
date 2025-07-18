@@ -64,18 +64,17 @@ class NotionCalendar:
         response = self.__safe_requests(db_api_url, headers=self.headers, data=json.dumps(data))
         content = response.json()
 
-        print(response.text)
-
         for event in content['results']:
 
             client = event['properties']['Client']['title'][0]['plain_text']
             ca = event['properties']['CA Net']['number']
             source = event['properties']['Source']['rich_text']
+            boat = event['properties']['Bateau']['select']['name']
             _date = event['properties']['Date']['date']
             start_date = datetime.fromisoformat(_date['start'])
             end_date = datetime.fromisoformat(_date['end'])
 
-            self.bookings.append(Event(client, start_date, end_date, ca, source))
+            self.bookings.append(Event(client, start_date, end_date, ca, boat, source))
 
         return response.json()
 
@@ -107,6 +106,11 @@ class NotionCalendar:
                             }
                         }
                     ]
+                },
+                "Bateau": {
+                    "select": {
+                        "name": event.boat
+                    }
                 },
                 "Date": {
                     "date": {
