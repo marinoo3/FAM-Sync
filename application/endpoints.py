@@ -46,7 +46,7 @@ def sync_clickandboat(db_id:str):
 
     # load calendar from Notion
     response_json = current_app.calendar.load_calendar(db_id)
-    print(response_json)
+    print('CALENDAR ------------------\n', response_json, '\n------------------')
 
     bookings = current_app.parser.get_bookings(platforms=['clickandboat'], cookies={'authToken': token})
 
